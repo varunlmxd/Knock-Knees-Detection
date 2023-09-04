@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
-from tensorflow.keras.utils import load_img
+from PIL import Image
+from tensorflow.keras.preprocessing.image import load_img
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import os
