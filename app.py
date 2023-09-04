@@ -1,8 +1,8 @@
 from flask import Flask, request, render_template
-from werkzeug.utils import secure_filename
+from tensorflow.keras.utils import load_img
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-import os  # Import the os module
+import os
 
 UPLOAD_FOLDER = os.getcwd() + '/static/uploads'
 app = Flask(__name__)
@@ -19,12 +19,10 @@ def predict():
     if 'file' not in request.files:
         return "No file part."
 
-
     file = request.files['file']
     if file.filename == '':
         return "No selected file."
-
-    # Save the uploaded file temporarily (you may want to handle this differently)
+        
     file.save(os.path.join(app.config['UPLOAD_FOLDER'],'temp.png'))
     try:
         model_mango = load_model('model.h5')
